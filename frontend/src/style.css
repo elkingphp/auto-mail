@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-main: #000000;
+    --bg-soft: #0a0a0a;
+    --text-main: #f8fafc;
+    --text-dim: #94a3b8;
+    --border-main: rgba(255, 255, 255, 0.05);
+    --brand-color: #ed1c24;
+    /* Egypt Post Red */
+    --brand-glow: rgba(237, 28, 36, 0.3);
+  }
+
+  .light {
+    --bg-main: #f1f5f9;
+    --bg-soft: #ffffff;
+    --text-main: #0f172a;
+    --text-dim: #475569;
+    --border-main: rgba(0, 0, 0, 0.1);
+  }
+
+  .glass-mode {
+    --bg-main: #000000;
+    --bg-soft: rgba(20, 20, 20, 0.6);
+  }
+
+  body {
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    @apply antialiased selection:bg-brand-500/30;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-display tracking-tight text-white;
+  }
+
+  .light h1,
+  .light h2,
+  .light h3,
+  .light h4,
+  .light h5,
+  .light h6 {
+    @apply text-slate-900;
+  }
+}
+
+@layer components {
+  .stripe-card {
+    background-color: var(--bg-soft);
+    border: 1px solid var(--border-main);
+    @apply rounded-xl shadow-xl transition-all duration-200;
+  }
+
+  .glass-mode .stripe-card {
+    @apply backdrop-blur-xl bg-white/5 border-white/10;
+  }
+
+  .glass-header {
+    @apply sticky top-0 z-40 w-full backdrop-blur flex-none transition-colors duration-500 lg:z-50 lg:border-b;
+    border-color: var(--border-main);
+    background-color: rgba(var(--bg-main), 0.8);
+  }
+
+  .nav-link-active {
+    @apply bg-brand-500/10 text-brand-400 ring-1 ring-brand-500/20;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-white/10 rounded-full hover:bg-white/20;
+}
+
+@layer utilities {
+  @keyframes shimmer {
+    100% {
+      transform: translateX(100%);
+    }
+  }
+}

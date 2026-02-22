@@ -1,0 +1,274 @@
+services:
+  # Control Plane (Laravel PHP-FPM)
+  app:
+    build:
+      context: ./control-plane-laravel
+      dockerfile: Dockerfile
+    image: rbdb-control-plane
+    container_name: rbdb-app
+    restart: unless-stopped
+    working_dir: /var/www
+    volumes:
+      - ./control-plane-laravel:/var/www
+    environment:
+      - CACHE_STORE=redis
+      - QUEUE_CONNECTION=redis
+      - REDIS_HOST=redis
+      - DB_HOST=db
+      - DB_PORT=3306
+      - DB_DATABASE=${DB_DATABASE:-rbdb}
+      - DB_USERNAME=${DB_USERNAME:-rbdb}
+      - DB_PASSWORD=${DB_PASSWORD:-root}
+      - REVERB_HOST=reverb
+
+    networks:
+      - rbdb-network
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: [ "CMD", "cgi-fcgi", "-bind", "-connect", "127.0.0.1:9000" ]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 60s
+
+  # Queue Worker
+  worker:
+    image: rbdb-control-plane
+    container_name: rbdb-worker
+    restart: unless-stopped
+    working_dir: /var/www
+    command: php artisan queue:work --tries=3 --timeout=90
+    volumes:
+      - ./control-plane-laravel:/var/www
+    environment:
+      - CACHE_STORE=redis
+      - QUEUE_CONNECTION=redis
+      - REDIS_HOST=redis
+      - DB_HOST=db
+      - REVERB_HOST=reverb
+
+    networks:
+      - rbdb-network
+    depends_on:
+      app:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      db:
+        condition: service_healthy
+
+  # Scheduler
+  scheduler:
+    image: rbdb-control-plane
+    container_name: rbdb-scheduler
+    restart: unless-stopped
+    working_dir: /var/www
+    command: php artisan schedule:work
+    volumes:
+      - ./control-plane-laravel:/var/www
+    environment:
+      - CACHE_STORE=redis
+      - QUEUE_CONNECTION=redis
+      - REDIS_HOST=redis
+      - DB_HOST=db
+      - REVERB_HOST=reverb
+
+    networks:
+      - rbdb-network
+    depends_on:
+      app:
+        condition: service_healthy
+
+  # Redis
+  redis:
+    image: redis:alpine
+    container_name: rbdb-redis
+    restart: unless-stopped
+    networks:
+      - rbdb-network
+    healthcheck:
+      test: [ "CMD", "redis-cli", "ping" ]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+  # Control Plane Web Server (Nginx)
+  web:
+    image: nginx:alpine
+    container_name: rbdb-web
+    restart: unless-stopped
+    volumes:
+      - ./control-plane-laravel:/var/www
+      - ./control-plane-laravel/docker/nginx/conf.d:/etc/nginx/conf.d
+    ports:
+      - "80:80"
+    networks:
+      - rbdb-network
+    depends_on:
+      app:
+        condition: service_healthy
+    healthcheck:
+      test: [ "CMD-SHELL", "wget -q --spider http://127.0.0.1/ || exit 1" ]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  # Database (MySQL)
+  db:
+    image: mysql:8.0
+    container_name: rbdb-db
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE:-rbdb}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:-root}
+      MYSQL_PASSWORD: ${DB_PASSWORD:-root}
+      MYSQL_USER: ${DB_USERNAME:-rbdb}
+    ports:
+      - "3306:3306"
+    volumes:
+      - db-data:/var/lib/mysql
+    networks:
+      - rbdb-network
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      interval: 10s
+      timeout: 10s
+      retries: 30
+
+  # Execution Engine (Go)
+  engine:
+    build:
+      context: ./backend-go
+      dockerfile: Dockerfile
+    image: rbdb-engine
+    container_name: rbdb-engine
+    restart: unless-stopped
+    environment:
+      CONTROL_PLANE_URL: http://web:80/api/v1
+      CONTROL_PLANE_TOKEN: ${ENGINE_TOKEN}
+      WORKER_COUNT: 5
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_USER: ${DB_USERNAME:-rbdb}
+      DB_PASSWORD: ${DB_PASSWORD:-root}
+      DB_NAME: ${DB_DATABASE:-rbdb}
+    networks:
+      - rbdb-network
+    depends_on:
+      web:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      db:
+        condition: service_healthy
+
+  # Frontend (Vue)
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        VITE_API_BASE_URL: ${VITE_API_BASE_URL:-http://localhost:8088/api/v1}
+        VITE_REVERB_APP_KEY: ${VITE_REVERB_APP_KEY}
+        VITE_REVERB_HOST: ${VITE_REVERB_HOST:-localhost}
+        VITE_REVERB_PORT: ${VITE_REVERB_PORT:-8080}
+        VITE_REVERB_SCHEME: ${VITE_REVERB_SCHEME:-http}
+    image: rbdb-frontend
+    container_name: rbdb-frontend
+    restart: unless-stopped
+    ports:
+      - "8088:80"
+    networks:
+      - rbdb-network
+    depends_on:
+      web:
+        condition: service_healthy
+
+  # Oracle Database (Testing Data)
+  oracle:
+    image: gvenzl/oracle-free:latest
+    container_name: rbdb-oracle
+    restart: unless-stopped
+    environment:
+      ORACLE_PASSWORD: root
+      APP_USER: post_admin
+      APP_USER_PASSWORD: password
+    ports:
+      - "1521:1521"
+    volumes:
+      - oracle-data:/opt/oracle/oradata
+      - ./oracle-init:/container-entrypoint-initdb.d
+    networks:
+      - rbdb-network
+
+  # FTP Test Server
+  ftp:
+    image: stilliard/pure-ftpd
+    container_name: rbdb-ftp
+    restart: unless-stopped
+    ports:
+      - "21:21"
+      - "30000-30009:30000-30009"
+    environment:
+      PUBLICHOST: ftp
+      FTP_USER_NAME: ftpuser
+      FTP_USER_PASS: ftppass
+      FTP_USER_HOME: /home/ftpuser
+    volumes:
+      - ftp-data:/home/ftpuser
+    networks:
+      - rbdb-network
+
+  # SMTP Test Server (MailHog)
+  mailhog:
+    image: mailhog/mailhog:latest
+    container_name: rbdb-mailhog
+    restart: unless-stopped
+    ports:
+      - "1025:1025" # SMTP port
+      - "8025:8025" # Web UI port
+    networks:
+      - rbdb-network
+
+  # Real-time Notifications (Laravel Reverb)
+  reverb:
+    image: rbdb-control-plane # Reuse app image
+    container_name: rbdb-reverb
+    restart: unless-stopped
+    working_dir: /var/www
+    command: php artisan reverb:start --host=0.0.0.0 --port=8080
+    volumes:
+      - ./control-plane-laravel:/var/www
+    environment:
+      - CACHE_STORE=redis
+      - QUEUE_CONNECTION=redis
+      - REDIS_HOST=redis
+      - DB_HOST=db
+      - REVERB_HOST=0.0.0.0
+
+    ports:
+      - "8080:8080"
+    networks:
+      - rbdb-network
+    depends_on:
+      redis:
+        condition: service_healthy
+      db:
+        condition: service_healthy
+      app:
+        condition: service_started
+
+networks:
+  rbdb-network:
+    driver: bridge
+
+volumes:
+  db-data:
+  oracle-data:
+  ftp-data:

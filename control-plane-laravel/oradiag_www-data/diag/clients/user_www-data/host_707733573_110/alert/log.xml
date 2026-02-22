@@ -1,0 +1,531 @@
+<msg time='2026-02-06T19:36:28.872+00:00' org_id='oracle' comp_id='clients'
+ msg_id='dbgrmmdcrf_create_relation_full:1960:1503427940' type='NOTIFICATION' group='create'
+ level='16' host_id='3672ab4fe985' host_addr='172.21.0.7'
+ pid='8' version='3'>
+ <txt>Create Relation ADR_CONTROL
+ </txt>
+</msg>
+<msg time='2026-02-06T19:36:30.415+00:00' org_id='oracle' comp_id='clients'
+ msg_id='dbgrmmdcrf_create_relation_full:1960:1503427940' type='NOTIFICATION' group='create'
+ level='16' host_id='3672ab4fe985' host_addr='172.21.0.7'
+ pid='7'>
+ <txt>Create Relation ADR_INVALIDATION
+ </txt>
+</msg>
+<msg time='2026-02-06T19:36:31.209+00:00' org_id='oracle' comp_id='clients'
+ msg_id='dbgrmmdcrf_create_relation_full:1960:1503427940' type='NOTIFICATION' group='create'
+ level='16' host_id='3672ab4fe985' host_addr='172.21.0.7'
+ pid='8'>
+ <txt>Create Relation INC_METER_IMPT_DEF
+ </txt>
+</msg>
+<msg time='2026-02-06T19:36:31.725+00:00' org_id='oracle' comp_id='clients'
+ msg_id='dbgrmmdcrf_create_relation_full:1960:1503427940' type='NOTIFICATION' group='create'
+ level='16' host_id='3672ab4fe985' host_addr='172.21.0.7'
+ pid='7'>
+ <txt>Create Relation INC_METER_PK_IMPTS
+ </txt>
+</msg>
+<msg time='2026-02-06T19:36:33.015+00:00' org_id='oracle' comp_id='clients'
+ type='UNKNOWN' level='16' host_id='3672ab4fe985'
+ host_addr='172.21.0.7' pid='7'>
+ <txt>
+
+***********************************************************************
+ </txt>
+</msg>
+<msg time='2026-02-06T19:36:33.065+00:00' org_id='oracle' comp_id='clients'
+ type='UNKNOWN' level='16' host_id='3672ab4fe985'
+ host_addr='172.21.0.7' pid='7'>
+ <txt>
+Fatal NI connect error 12541, connecting to:
+ (DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=localhost)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=FREEPDB1)(CID=(PROGRAM=php-fpm:?pool?www)(HOST=3672ab4fe985)(USER=www-data))(CONNECTION_ID=Si3n1mPeAAfgYwcAFawE8Q==)))
+ </txt>
+</msg>
+<msg time='2026-02-06T19:36:33.114+00:00' org_id='oracle' comp_id='clients'
+ type='UNKNOWN' level='16' host_id='3672ab4fe985'
+ host_addr='172.21.0.7' pid='7'>
+ <txt>
+  VERSION INFORMATION:
+	TNS for Linux: Version 21.0.0.0.0 - Production
+	TCP/IP NT Protocol Adapter for Linux: Version 21.0.0.0.0 - Production
+ </txt>
+</msg>
+<msg time='2026-02-06T19:36:33.114+00:00' org_id='oracle' comp_id='clients'
+ type='UNKNOWN' level='16' host_id='3672ab4fe985'
+ host_addr='172.21.0.7' pid='8'>
+ <txt>
+
+***********************************************************************
+ </txt>
+</msg>
+<msg time='2026-02-06T19:36:33.116+00:00' org_id='oracle' comp_id='clients'
+ type='UNKNOWN' level='16' host_id='3672ab4fe985'
+ host_addr='172.21.0.7' pid='7'>
+ <txt>  Version 21.1.0.0.0
+ </txt>
+</msg>
+<msg time='2026-02-06T19:36:33.116+00:00' org_id='oracle' comp_id='clients'
+ type='UNKNOWN' level='16' host_id='3672ab4fe985'
+ host_addr='172.21.0.7' pid='8'>
+ <txt>
+Fatal NI connect error 12505, connecting to:
+ (DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=oracle)(PORT=1521))(CONNECT_DATA=(SID=FREEPDB1)(CID=(PROGRAM=php-fpm:?pool?www)(HOST=3672ab4fe985)(USER=www-data))(CONNECTION_ID=Si3n1fgOAAjgYwcAFazr4g==)))
+ </txt>
+</msg>
+<msg time='2026-02-06T19:36:33.118+00:00' org_id='oracle' comp_id='clients'
+ type='UNKNOWN' level='16' host_id='3672ab4fe985'
+ host_addr='172.21.0.7' pid='7'>
+ <txt>  Time: 06-FEB-2026 19:36:33
+ </txt>
+</msg>
+<msg time='2026-02-06T19:36:33.118+00:00' org_id='oracle' comp_id='clients'
+ type='UNKNOWN' level='16' host_id='3672ab4fe985'
+ host_addr='172.21.0.7' pid='8'>
+ <txt>
+  VERSION INFORMATION:
+	TNS for Linux: Version 21.0.0.0.0 - Production
+	TCP/IP NT Protocol Adapter for Linux: Version 21.0.0.0.0 - Production
+ </txt>
+</msg>
+<msg time='2026-02-06T19:36:33.120+00:00' org_id='oracle' comp_id='clients'
+ type='UNKNOWN' level='16' host_id='3672ab4fe985'
+ host_addr='172.21.0.7' pid='7'>
+ <txt>  Tracing not turned on. Process Id = 7
+ </txt>
+</msg>
+<msg time='2026-02-06T19:36:33.120+00:00' org_id='oracle' comp_id='clients'
+ type='UNKNOWN' level='16' host_id='3672ab4fe985'
+ host_addr='172.21.0.7' pid='8'>
+ <txt>  Version 21.1.0.0.0
+ </txt>
+</msg>
+<msg time='2026-02-06T19:36:33.121+00:00' org_id='oracle' comp_id='clients'
+ type='UNKNOWN' level='16' host_id='3672ab4fe985'
+ host_addr='172.21.0.7' pid='7'>
+ <txt>  Tns error struct:
+ </txt>
+</msg>
+<msg time='2026-02-06T19:36:33.122+00:00' org_id='oracle' comp_id='clients'
+ type='UNKNOWN' level='16' host_id='3672ab4fe985'
+ host_addr='172.21.0.7' pid='8'>
+ <txt>  Time: 06-FEB-2026 19:36:33
+ </txt>
+</msg>
+<msg time='2026-02-06T19:36:33.123+00:00' org_id='oracle' comp_id='clients'
+ type='UNKNOWN' level='16' host_id='3672ab4fe985'
+ host_addr='172.21.0.7' pid='7'>
+ <txt>    ns main err code: 12541
+ </txt>
+</msg>
+<msg time='2026-02-06T19:36:33.123+00:00' org_id='oracle' comp_id='clients'
+ type='UNKNOWN' level='16' host_id='3672ab4fe985'
+ host_addr='172.21.0.7' pid='8'>
+ <txt>  Tracing not turned on. Process Id = 8
+ </txt>
+</msg>
+<msg time='2026-02-06T19:36:33.124+00:00' org_id='oracle' comp_id='clients'
+ type='UNKNOWN' level='16' host_id='3672ab4fe985'
+ host_addr='172.21.0.7' pid='7'>
+ <txt>    
+ </txt>
+</msg>
+<msg time='2026-02-06T19:36:33.125+00:00' org_id='oracle' comp_id='clients'
+ type='UNKNOWN' level='16' host_id='3672ab4fe985'
+ host_addr='172.21.0.7' pid='8'>
+ <txt>  Tns error struct:
+ </txt>
+</msg>
+<msg time='2026-02-06T19:36:33.126+00:00' org_id='oracle' comp_id='clients'
+ type='UNKNOWN' level='16' host_id='3672ab4fe985'
+ host_addr='172.21.0.7' pid='7'>
+ <txt>TNS-12541: TNS:no listener
+ </txt>
+</msg>
+<msg time='2026-02-06T19:36:33.126+00:00' org_id='oracle' comp_id='clients'
+ type='UNKNOWN' level='16' host_id='3672ab4fe985'
+ host_addr='172.21.0.7' pid='8'>
+ <txt>    ns main err code: 12564
+ </txt>
+</msg>
+<msg time='2026-02-06T19:36:33.127+00:00' org_id='oracle' comp_id='clients'
+ type='UNKNOWN' level='16' host_id='3672ab4fe985'
+ host_addr='172.21.0.7' pid='7'>
+ <txt>    ns secondary err code: 12560
+ </txt>
+</msg>
+<msg time='2026-02-06T19:36:33.128+00:00' org_id='oracle' comp_id='clients'
+ type='UNKNOWN' level='16' host_id='3672ab4fe985'
+ host_addr='172.21.0.7' pid='8'>
+ <txt>    
+ </txt>
+</msg>
+<msg time='2026-02-06T19:36:33.129+00:00' org_id='oracle' comp_id='clients'
+ type='UNKNOWN' level='16' host_id='3672ab4fe985'
+ host_addr='172.21.0.7' pid='7'>
+ <txt>    nt main err code: 511
+ </txt>
+</msg>
+<msg time='2026-02-06T19:36:33.129+00:00' org_id='oracle' comp_id='clients'
+ type='UNKNOWN' level='16' host_id='3672ab4fe985'
+ host_addr='172.21.0.7' pid='8'>
+ <txt>TNS-12564: TNS:connection refused
+ </txt>
+</msg>
+<msg time='2026-02-06T19:36:33.130+00:00' org_id='oracle' comp_id='clients'
+ type='UNKNOWN' level='16' host_id='3672ab4fe985'
+ host_addr='172.21.0.7' pid='7'>
+ <txt>    
+ </txt>
+</msg>
+<msg time='2026-02-06T19:36:33.131+00:00' org_id='oracle' comp_id='clients'
+ type='UNKNOWN' level='16' host_id='3672ab4fe985'
+ host_addr='172.21.0.7' pid='8'>
+ <txt>    ns secondary err code: 0
+ </txt>
+</msg>
+<msg time='2026-02-06T19:36:33.132+00:00' org_id='oracle' comp_id='clients'
+ type='UNKNOWN' level='16' host_id='3672ab4fe985'
+ host_addr='172.21.0.7' pid='7'>
+ <txt>TNS-00511: No listener
+ </txt>
+</msg>
+<msg time='2026-02-06T19:36:33.132+00:00' org_id='oracle' comp_id='clients'
+ type='UNKNOWN' level='16' host_id='3672ab4fe985'
+ host_addr='172.21.0.7' pid='8'>
+ <txt>    nt main err code: 0
+ </txt>
+</msg>
+<msg time='2026-02-06T19:36:33.133+00:00' org_id='oracle' comp_id='clients'
+ type='UNKNOWN' level='16' host_id='3672ab4fe985'
+ host_addr='172.21.0.7' pid='7'>
+ <txt>    nt secondary err code: 111
+ </txt>
+</msg>
+<msg time='2026-02-06T19:36:33.133+00:00' org_id='oracle' comp_id='clients'
+ type='UNKNOWN' level='16' host_id='3672ab4fe985'
+ host_addr='172.21.0.7' pid='8'>
+ <txt>    nt secondary err code: 0
+ </txt>
+</msg>
+<msg time='2026-02-06T19:36:33.135+00:00' org_id='oracle' comp_id='clients'
+ type='UNKNOWN' level='16' host_id='3672ab4fe985'
+ host_addr='172.21.0.7' pid='7'>
+ <txt>    nt OS err code: 0
+ </txt>
+</msg>
+<msg time='2026-02-06T19:36:33.135+00:00' org_id='oracle' comp_id='clients'
+ type='UNKNOWN' level='16' host_id='3672ab4fe985'
+ host_addr='172.21.0.7' pid='8'>
+ <txt>    nt OS err code: 0
+ </txt>
+</msg>
+<msg time='2026-02-06T19:36:44.765+00:00' org_id='oracle' comp_id='clients'
+ type='UNKNOWN' level='16' host_id='3672ab4fe985'
+ host_addr='172.21.0.7' pid='8'>
+ <txt>
+
+***********************************************************************
+ </txt>
+</msg>
+<msg time='2026-02-06T19:36:44.769+00:00' org_id='oracle' comp_id='clients'
+ type='UNKNOWN' level='16' host_id='3672ab4fe985'
+ host_addr='172.21.0.7' pid='8'>
+ <txt>
+Fatal NI connect error 12541, connecting to:
+ (DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=oracle)(PORT=1522))(CONNECT_DATA=(SID=FREEPDB1)(CID=(PROGRAM=php-fpm:?pool?www)(HOST=3672ab4fe985)(USER=www-data))(CONNECTION_ID=Si3n1fgQAAjgYwcAFazr4g==)))
+ </txt>
+</msg>
+<msg time='2026-02-06T19:36:44.771+00:00' org_id='oracle' comp_id='clients'
+ type='UNKNOWN' level='16' host_id='3672ab4fe985'
+ host_addr='172.21.0.7' pid='8'>
+ <txt>
+  VERSION INFORMATION:
+	TNS for Linux: Version 21.0.0.0.0 - Production
+	TCP/IP NT Protocol Adapter for Linux: Version 21.0.0.0.0 - Production
+ </txt>
+</msg>
+<msg time='2026-02-06T19:36:44.772+00:00' org_id='oracle' comp_id='clients'
+ type='UNKNOWN' level='16' host_id='3672ab4fe985'
+ host_addr='172.21.0.7' pid='8'>
+ <txt>  Version 21.1.0.0.0
+ </txt>
+</msg>
+<msg time='2026-02-06T19:36:44.774+00:00' org_id='oracle' comp_id='clients'
+ type='UNKNOWN' level='16' host_id='3672ab4fe985'
+ host_addr='172.21.0.7' pid='8'>
+ <txt>  Time: 06-FEB-2026 19:36:44
+ </txt>
+</msg>
+<msg time='2026-02-06T19:36:44.776+00:00' org_id='oracle' comp_id='clients'
+ type='UNKNOWN' level='16' host_id='3672ab4fe985'
+ host_addr='172.21.0.7' pid='8'>
+ <txt>  Tracing not turned on. Process Id = 8
+ </txt>
+</msg>
+<msg time='2026-02-06T19:36:44.777+00:00' org_id='oracle' comp_id='clients'
+ type='UNKNOWN' level='16' host_id='3672ab4fe985'
+ host_addr='172.21.0.7' pid='8'>
+ <txt>  Tns error struct:
+ </txt>
+</msg>
+<msg time='2026-02-06T19:36:44.779+00:00' org_id='oracle' comp_id='clients'
+ type='UNKNOWN' level='16' host_id='3672ab4fe985'
+ host_addr='172.21.0.7' pid='8'>
+ <txt>    ns main err code: 12541
+ </txt>
+</msg>
+<msg time='2026-02-06T19:36:44.781+00:00' org_id='oracle' comp_id='clients'
+ type='UNKNOWN' level='16' host_id='3672ab4fe985'
+ host_addr='172.21.0.7' pid='8'>
+ <txt>    
+ </txt>
+</msg>
+<msg time='2026-02-06T19:36:44.784+00:00' org_id='oracle' comp_id='clients'
+ type='UNKNOWN' level='16' host_id='3672ab4fe985'
+ host_addr='172.21.0.7' pid='8'>
+ <txt>TNS-12541: TNS:no listener
+ </txt>
+</msg>
+<msg time='2026-02-06T19:36:44.787+00:00' org_id='oracle' comp_id='clients'
+ type='UNKNOWN' level='16' host_id='3672ab4fe985'
+ host_addr='172.21.0.7' pid='8'>
+ <txt>    ns secondary err code: 12560
+ </txt>
+</msg>
+<msg time='2026-02-06T19:36:44.789+00:00' org_id='oracle' comp_id='clients'
+ type='UNKNOWN' level='16' host_id='3672ab4fe985'
+ host_addr='172.21.0.7' pid='8'>
+ <txt>    nt main err code: 511
+ </txt>
+</msg>
+<msg time='2026-02-06T19:36:44.790+00:00' org_id='oracle' comp_id='clients'
+ type='UNKNOWN' level='16' host_id='3672ab4fe985'
+ host_addr='172.21.0.7' pid='8'>
+ <txt>    
+ </txt>
+</msg>
+<msg time='2026-02-06T19:36:44.792+00:00' org_id='oracle' comp_id='clients'
+ type='UNKNOWN' level='16' host_id='3672ab4fe985'
+ host_addr='172.21.0.7' pid='8'>
+ <txt>TNS-00511: No listener
+ </txt>
+</msg>
+<msg time='2026-02-06T19:36:44.793+00:00' org_id='oracle' comp_id='clients'
+ type='UNKNOWN' level='16' host_id='3672ab4fe985'
+ host_addr='172.21.0.7' pid='8'>
+ <txt>    nt secondary err code: 111
+ </txt>
+</msg>
+<msg time='2026-02-06T19:36:44.795+00:00' org_id='oracle' comp_id='clients'
+ type='UNKNOWN' level='16' host_id='3672ab4fe985'
+ host_addr='172.21.0.7' pid='8'>
+ <txt>    nt OS err code: 0
+ </txt>
+</msg>
+<msg time='2026-02-06T19:40:38.703+00:00' org_id='oracle' comp_id='clients'
+ type='UNKNOWN' level='16' host_id='3672ab4fe985'
+ host_addr='172.21.0.7' pid='8'>
+ <txt>
+
+***********************************************************************
+ </txt>
+</msg>
+<msg time='2026-02-06T19:40:38.704+00:00' org_id='oracle' comp_id='clients'
+ type='UNKNOWN' level='16' host_id='3672ab4fe985'
+ host_addr='172.21.0.7' pid='8'>
+ <txt>
+Fatal NI connect error 12541, connecting to:
+ (DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=oracle)(PORT=1522))(CONNECT_DATA=(SERVICE_NAME=FREEPDB1)(CID=(PROGRAM=php-fpm:?pool?www)(HOST=3672ab4fe985)(USER=www-data))(CONNECTION_ID=Si3n1fgVAAjgYwcAFazr4g==)))
+ </txt>
+</msg>
+<msg time='2026-02-06T19:40:38.706+00:00' org_id='oracle' comp_id='clients'
+ type='UNKNOWN' level='16' host_id='3672ab4fe985'
+ host_addr='172.21.0.7' pid='8'>
+ <txt>
+  VERSION INFORMATION:
+	TNS for Linux: Version 21.0.0.0.0 - Production
+	TCP/IP NT Protocol Adapter for Linux: Version 21.0.0.0.0 - Production
+ </txt>
+</msg>
+<msg time='2026-02-06T19:40:38.708+00:00' org_id='oracle' comp_id='clients'
+ type='UNKNOWN' level='16' host_id='3672ab4fe985'
+ host_addr='172.21.0.7' pid='8'>
+ <txt>  Version 21.1.0.0.0
+ </txt>
+</msg>
+<msg time='2026-02-06T19:40:38.710+00:00' org_id='oracle' comp_id='clients'
+ type='UNKNOWN' level='16' host_id='3672ab4fe985'
+ host_addr='172.21.0.7' pid='8'>
+ <txt>  Time: 06-FEB-2026 19:40:38
+ </txt>
+</msg>
+<msg time='2026-02-06T19:40:38.713+00:00' org_id='oracle' comp_id='clients'
+ type='UNKNOWN' level='16' host_id='3672ab4fe985'
+ host_addr='172.21.0.7' pid='8'>
+ <txt>  Tracing not turned on. Process Id = 8
+ </txt>
+</msg>
+<msg time='2026-02-06T19:40:38.716+00:00' org_id='oracle' comp_id='clients'
+ type='UNKNOWN' level='16' host_id='3672ab4fe985'
+ host_addr='172.21.0.7' pid='8'>
+ <txt>  Tns error struct:
+ </txt>
+</msg>
+<msg time='2026-02-06T19:40:38.718+00:00' org_id='oracle' comp_id='clients'
+ type='UNKNOWN' level='16' host_id='3672ab4fe985'
+ host_addr='172.21.0.7' pid='8'>
+ <txt>    ns main err code: 12541
+ </txt>
+</msg>
+<msg time='2026-02-06T19:40:38.720+00:00' org_id='oracle' comp_id='clients'
+ type='UNKNOWN' level='16' host_id='3672ab4fe985'
+ host_addr='172.21.0.7' pid='8'>
+ <txt>    
+ </txt>
+</msg>
+<msg time='2026-02-06T19:40:38.721+00:00' org_id='oracle' comp_id='clients'
+ type='UNKNOWN' level='16' host_id='3672ab4fe985'
+ host_addr='172.21.0.7' pid='8'>
+ <txt>TNS-12541: TNS:no listener
+ </txt>
+</msg>
+<msg time='2026-02-06T19:40:38.723+00:00' org_id='oracle' comp_id='clients'
+ type='UNKNOWN' level='16' host_id='3672ab4fe985'
+ host_addr='172.21.0.7' pid='8'>
+ <txt>    ns secondary err code: 12560
+ </txt>
+</msg>
+<msg time='2026-02-06T19:40:38.725+00:00' org_id='oracle' comp_id='clients'
+ type='UNKNOWN' level='16' host_id='3672ab4fe985'
+ host_addr='172.21.0.7' pid='8'>
+ <txt>    nt main err code: 511
+ </txt>
+</msg>
+<msg time='2026-02-06T19:40:38.728+00:00' org_id='oracle' comp_id='clients'
+ type='UNKNOWN' level='16' host_id='3672ab4fe985'
+ host_addr='172.21.0.7' pid='8'>
+ <txt>    
+ </txt>
+</msg>
+<msg time='2026-02-06T19:40:38.731+00:00' org_id='oracle' comp_id='clients'
+ type='UNKNOWN' level='16' host_id='3672ab4fe985'
+ host_addr='172.21.0.7' pid='8'>
+ <txt>TNS-00511: No listener
+ </txt>
+</msg>
+<msg time='2026-02-06T19:40:38.734+00:00' org_id='oracle' comp_id='clients'
+ type='UNKNOWN' level='16' host_id='3672ab4fe985'
+ host_addr='172.21.0.7' pid='8'>
+ <txt>    nt secondary err code: 111
+ </txt>
+</msg>
+<msg time='2026-02-06T19:40:38.736+00:00' org_id='oracle' comp_id='clients'
+ type='UNKNOWN' level='16' host_id='3672ab4fe985'
+ host_addr='172.21.0.7' pid='8'>
+ <txt>    nt OS err code: 0
+ </txt>
+</msg>
+<msg time='2026-02-06T19:40:43.831+00:00' org_id='oracle' comp_id='clients'
+ type='UNKNOWN' level='16' host_id='3672ab4fe985'
+ host_addr='172.21.0.7' pid='8'>
+ <txt>
+
+***********************************************************************
+ </txt>
+</msg>
+<msg time='2026-02-06T19:40:43.837+00:00' org_id='oracle' comp_id='clients'
+ type='UNKNOWN' level='16' host_id='3672ab4fe985'
+ host_addr='172.21.0.7' pid='8'>
+ <txt>
+Fatal NI connect error 12541, connecting to:
+ (DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=localhost)(PORT=1521))(CONNECT_DATA=(SERVICE_NAME=FREEPDB1)(CID=(PROGRAM=php-fpm:?pool?www)(HOST=3672ab4fe985)(USER=www-data))(CONNECTION_ID=Si3n1fgXAAjgYwcAFazr4g==)))
+ </txt>
+</msg>
+<msg time='2026-02-06T19:40:43.840+00:00' org_id='oracle' comp_id='clients'
+ type='UNKNOWN' level='16' host_id='3672ab4fe985'
+ host_addr='172.21.0.7' pid='8'>
+ <txt>
+  VERSION INFORMATION:
+	TNS for Linux: Version 21.0.0.0.0 - Production
+	TCP/IP NT Protocol Adapter for Linux: Version 21.0.0.0.0 - Production
+ </txt>
+</msg>
+<msg time='2026-02-06T19:40:43.842+00:00' org_id='oracle' comp_id='clients'
+ type='UNKNOWN' level='16' host_id='3672ab4fe985'
+ host_addr='172.21.0.7' pid='8'>
+ <txt>  Version 21.1.0.0.0
+ </txt>
+</msg>
+<msg time='2026-02-06T19:40:43.843+00:00' org_id='oracle' comp_id='clients'
+ type='UNKNOWN' level='16' host_id='3672ab4fe985'
+ host_addr='172.21.0.7' pid='8'>
+ <txt>  Time: 06-FEB-2026 19:40:43
+ </txt>
+</msg>
+<msg time='2026-02-06T19:40:43.845+00:00' org_id='oracle' comp_id='clients'
+ type='UNKNOWN' level='16' host_id='3672ab4fe985'
+ host_addr='172.21.0.7' pid='8'>
+ <txt>  Tracing not turned on. Process Id = 8
+ </txt>
+</msg>
+<msg time='2026-02-06T19:40:43.847+00:00' org_id='oracle' comp_id='clients'
+ type='UNKNOWN' level='16' host_id='3672ab4fe985'
+ host_addr='172.21.0.7' pid='8'>
+ <txt>  Tns error struct:
+ </txt>
+</msg>
+<msg time='2026-02-06T19:40:43.849+00:00' org_id='oracle' comp_id='clients'
+ type='UNKNOWN' level='16' host_id='3672ab4fe985'
+ host_addr='172.21.0.7' pid='8'>
+ <txt>    ns main err code: 12541
+ </txt>
+</msg>
+<msg time='2026-02-06T19:40:43.850+00:00' org_id='oracle' comp_id='clients'
+ type='UNKNOWN' level='16' host_id='3672ab4fe985'
+ host_addr='172.21.0.7' pid='8'>
+ <txt>    
+ </txt>
+</msg>
+<msg time='2026-02-06T19:40:43.852+00:00' org_id='oracle' comp_id='clients'
+ type='UNKNOWN' level='16' host_id='3672ab4fe985'
+ host_addr='172.21.0.7' pid='8'>
+ <txt>TNS-12541: TNS:no listener
+ </txt>
+</msg>
+<msg time='2026-02-06T19:40:43.853+00:00' org_id='oracle' comp_id='clients'
+ type='UNKNOWN' level='16' host_id='3672ab4fe985'
+ host_addr='172.21.0.7' pid='8'>
+ <txt>    ns secondary err code: 12560
+ </txt>
+</msg>
+<msg time='2026-02-06T19:40:43.855+00:00' org_id='oracle' comp_id='clients'
+ type='UNKNOWN' level='16' host_id='3672ab4fe985'
+ host_addr='172.21.0.7' pid='8'>
+ <txt>    nt main err code: 511
+ </txt>
+</msg>
+<msg time='2026-02-06T19:40:43.856+00:00' org_id='oracle' comp_id='clients'
+ type='UNKNOWN' level='16' host_id='3672ab4fe985'
+ host_addr='172.21.0.7' pid='8'>
+ <txt>    
+ </txt>
+</msg>
+<msg time='2026-02-06T19:40:43.858+00:00' org_id='oracle' comp_id='clients'
+ type='UNKNOWN' level='16' host_id='3672ab4fe985'
+ host_addr='172.21.0.7' pid='8'>
+ <txt>TNS-00511: No listener
+ </txt>
+</msg>
+<msg time='2026-02-06T19:40:43.860+00:00' org_id='oracle' comp_id='clients'
+ type='UNKNOWN' level='16' host_id='3672ab4fe985'
+ host_addr='172.21.0.7' pid='8'>
+ <txt>    nt secondary err code: 111
+ </txt>
+</msg>
+<msg time='2026-02-06T19:40:43.862+00:00' org_id='oracle' comp_id='clients'
+ type='UNKNOWN' level='16' host_id='3672ab4fe985'
+ host_addr='172.21.0.7' pid='8'>
+ <txt>    nt OS err code: 0
+ </txt>
+</msg>

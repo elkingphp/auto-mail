@@ -1,0 +1,35 @@
+# Environment files
+.env
+.env.*
+!.env.example
+
+# OS files
+.DS_Store
+Thumbs.db
+*.log
+
+# Dependencies
+node_modules/
+vendor/
+dist/
+
+# Application specific ignores
+control-plane-laravel/storage/framework/cache/data/*
+control-plane-laravel/storage/framework/sessions/*
+control-plane-laravel/storage/framework/views/*
+control-plane-laravel/storage/logs/*
+control-plane-laravel/bootstrap/cache/*
+control-plane-laravel/public/storage
+control-plane-laravel/public/build
+control-plane-laravel/public/hot
+
+# Go binaries
+backend-go/bin/
+
+# Docker data
+docker/mysql/data/*
+
+# Agent artifacts
+.agent/
+antigravity/
+build_log.txt

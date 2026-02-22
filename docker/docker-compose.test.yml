@@ -1,0 +1,174 @@
+version: '3.8'
+
+services:
+  # Main Testing DB (MySQL)
+  mysql_test:
+    image: mysql:8.0
+    container_name: rbdb_mysql_test
+    environment:
+      MYSQL_DATABASE: rbdb_test
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: rbdb
+      MYSQL_PASSWORD: password
+    ports:
+      - "33061:3306"
+    volumes:
+      - ./init/mysql:/docker-entrypoint-initdb.d
+    networks:
+      - rbdb_test_net
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # PostgreSQL Testing DB
+  postgres_test:
+    image: postgres:16-alpine
+    container_name: rbdb_postgres_test
+    environment:
+      POSTGRES_DB: rbdb_test
+      POSTGRES_USER: rbdb
+      POSTGRES_PASSWORD: password
+    ports:
+      - "54321:5432"
+    volumes:
+      - ./init/postgres:/docker-entrypoint-initdb.d
+    networks:
+      - rbdb_test_net
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U rbdb -d rbdb_test" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # MSSQL Testing DB (Heavier - with profile and memory limits)
+  mssql_test:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: rbdb_mssql_test
+    profiles: [ "heavy" ]
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: "Password123!"
+      MSSQL_PID: "Express"
+    ports:
+      - "14331:1433"
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+    volumes:
+      - ./init/mssql:/docker-entrypoint-initdb.d
+    networks:
+      - rbdb_test_net
+    healthcheck:
+      test: [ "CMD", "/opt/mssql-tools/bin/sqlcmd", "-S", "localhost", "-U", "sa", "-P", "Password123!", "-Q", "SELECT 1" ]
+      interval: 20s
+      timeout: 10s
+      retries: 10
+
+  # Oracle Testing DB (Heavier - with profile and memory limits)
+  oracle_test:
+    image: gvenzl/oracle-xe
+    container_name: rbdb_oracle_test
+    profiles: [ "heavy" ]
+    environment:
+      ORACLE_PASSWORD: "Password123!"
+      APP_USER: rbdb
+      APP_USER_PASSWORD: password
+    ports:
+      - "15211:1521"
+    deploy:
+      resources:
+        limits:
+          memory: 2G
+    volumes:
+      - ./init/oracle:/container-entrypoint-initdb.d
+    networks:
+      - rbdb_test_net
+    healthcheck:
+      test: [ "CMD-SHELL", "exit | sqlplus -L rbdb/password@localhost:1521/XE" ]
+      interval: 30s
+      timeout: 10s
+      retries: 20
+
+  # Redis for Queues
+  redis_test:
+    image: redis:alpine
+    container_name: rbdb_redis_test
+    ports:
+      - "63791:6379"
+    networks:
+      - rbdb_test_net
+    deploy:
+      resources:
+        limits:
+          memory: 128M
+    healthcheck:
+      test: [ "CMD", "redis-cli", "ping" ]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+  # FTP Server
+  ftp_test:
+    image: stilliard/pure-ftpd
+    container_name: rbdb_ftp_test
+    environment:
+      PUBLICHOST: localhost
+      FTP_USER_NAME: rbdb
+      FTP_USER_PASS: password
+      FTP_USER_HOME: /home/rbdb
+    ports:
+      - "211:21"
+      - "30010-30019:30000-30009"
+    networks:
+      - rbdb_test_net
+    deploy:
+      resources:
+        limits:
+          memory: 128M
+
+  # MailHog for Emails
+  mailhog_test:
+    image: mailhog/mailhog
+    container_name: rbdb_mailhog_test
+    ports:
+      - "10251:1025"
+      - "8026:8025"
+    networks:
+      - rbdb_test_net
+    deploy:
+      resources:
+        limits:
+          memory: 128M
+
+  # Toxiproxy for Network Failure Simulation
+  toxiproxy:
+    image: ghcr.io/shopify/toxiproxy:2.5.0
+    container_name: rbdb_toxiproxy
+    ports:
+      - "8474:8474" # API
+      - "33062:33062" # Proxied MySQL
+      - "54322:54322" # Proxied Postgres
+      - "63792:63792" # Proxied Redis
+      - "212:212" # Proxied FTP
+    networks:
+      - rbdb_test_net
+    depends_on:
+      - mysql_test
+      - postgres_test
+      - redis_test
+      - ftp_test
+
+networks:
+  rbdb_test_net:
+    driver: bridge
