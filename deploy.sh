@@ -23,25 +23,71 @@ echo -e "${BLUE}====================================================${NC}"
 echo -e "${BLUE}🚀 RBDB System Deployment & Health Check 🚀${NC}"
 echo -e "${BLUE}====================================================${NC}"
 
-# --- 1. System Prerequisite Checks ---
-echo -e "\n${YELLOW}🔍 Step 1: Checking System Prerequisites...${NC}"
+# --- 1. OS Detection & Auto-Installation ---
+echo -e "\n${YELLOW}🔍 Step 1: Checking System & Prerequisites...${NC}"
 
-check_cmd() {
-    if ! command -v "$1" &> /dev/null; then
-        echo -e "${RED}❌ Error: $1 is not installed.${NC}"
+# Detect OS
+if [ -f /etc/os-release ]; then
+    . /etc/os-release
+    OS=$ID
+    OS_LIKE=$ID_LIKE
+else
+    OS=$(uname -s)
+fi
+
+echo -e "🖥️ Detected OS: ${BLUE}$PRETTY_NAME${NC}"
+
+# Function to install packages based on OS
+install_pkg() {
+    local pkg=$1
+    echo -e "${YELLOW}🛠️ Attempting to install $pkg...${NC}"
+    
+    if [[ "$OS" == "almalinux" || "$OS" == "rhel" || "$OS" == "centos" || "$OS_LIKE" == *"rhel"* ]]; then
+        sudo dnf install -y "$pkg"
+    elif [[ "$OS" == "ubuntu" || "$OS" == "debian" || "$OS_LIKE" == *"debian"* ]]; then
+        sudo apt-get update && sudo apt-get install -y "$pkg"
+    else
+        echo -e "${RED}❌ Auto-install not supported for $OS. Please install $pkg manually.${NC}"
         exit 1
     fi
-    echo -e "${GREEN}✅ $1 is installed.${NC}"
 }
 
-check_cmd "docker"
-check_cmd "docker-compose"
-
-# Check if Docker daemon is running
-if ! docker info &> /dev/null; then
-    echo -e "${RED}❌ Error: Docker daemon is not running.${NC}"
-    exit 1
+# Check for Docker
+if ! command -v docker &> /dev/null; then
+    echo -e "${YELLOW}⚠️ Docker not found. Starting installation...${NC}"
+    if [[ "$OS" == "almalinux" || "$OS" == "rhel" ]]; then
+        sudo dnf config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+        install_pkg "docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin"
+        sudo systemctl enable --now docker
+    else
+        install_pkg "docker.io"
+    fi
 fi
+
+# Determine which docker-compose command to use
+if docker compose version &> /dev/null; then
+    DOCKER_COMPOSE="docker compose"
+    echo -e "${GREEN}✅ Found 'docker compose' (plugin).${NC}"
+elif command -v docker-compose &> /dev/null; then
+    DOCKER_COMPOSE="docker-compose"
+    echo -e "${GREEN}✅ Found 'docker-compose' (standalone).${NC}"
+else
+    echo -e "${YELLOW}⚠️ Docker Compose not found. Installing...${NC}"
+    if [[ "$OS" == "almalinux" || "$OS" == "rhel" ]]; then
+        install_pkg "docker-compose-plugin"
+        DOCKER_COMPOSE="docker compose"
+    else
+        install_pkg "docker-compose"
+        DOCKER_COMPOSE="docker-compose"
+    fi
+fi
+
+# Check for lsof (used in port check)
+if ! command -v lsof &> /dev/null; then
+    install_pkg "lsof"
+fi
+
+echo -e "${GREEN}✅ All prerequisites satisfied.${NC}"
 
 # --- 2. Environment File Checks ---
 echo -e "\n${YELLOW}🔍 Step 2: Checking Configuration Files...${NC}"
@@ -88,10 +134,10 @@ done
 echo -e "\n${YELLOW}🚀 Step 4: Starting Deployment Process...${NC}"
 
 echo -e "${BLUE}📦 Pulling/Building images...${NC}"
-docker-compose build --parallel
+$DOCKER_COMPOSE build --parallel
 
 echo -e "${BLUE}🚢 Starting containers in detached mode...${NC}"
-docker-compose up -d
+$DOCKER_COMPOSE up -d
 
 # --- 5. Health Verification ---
 echo -e "\n${YELLOW}🔍 Step 5: Verifying Service Health...${NC}"
@@ -143,7 +189,7 @@ done
 
 if [ $COUNTER -ge $MAX_WAIT ]; then
     echo -e "\n${RED}❌ Timeout: Some services failed to reach healthy state within ${MAX_WAIT}s.${NC}"
-    docker-compose ps
+    $DOCKER_COMPOSE ps
     exit 1
 fi
 
@@ -151,11 +197,11 @@ fi
 echo -e "\n${YELLOW}🛠 Step 6: Running Post-Deployment Tasks...${NC}"
 
 echo -e "${BLUE}🗄 Running Database Migrations...${NC}"
-docker-compose exec -T app php artisan migrate --force
+$DOCKER_COMPOSE exec -T app php artisan migrate --force
 
 echo -e "${BLUE}🧹 Clearing Caches...${NC}"
-docker-compose exec -T app php artisan config:clear
-docker-compose exec -T app php artisan cache:clear
+$DOCKER_COMPOSE exec -T app php artisan config:clear
+$DOCKER_COMPOSE exec -T app php artisan cache:clear
 
 # --- 7. Final Summary ---
 echo -e "\n${BLUE}====================================================${NC}"
