@@ -32,8 +32,8 @@ services:
       test: [ "CMD", "cgi-fcgi", "-bind", "-connect", "127.0.0.1:9000" ]
       interval: 10s
       timeout: 5s
-      retries: 3
-      start_period: 60s
+      start_period: 40s
+      retries: 6
 
   # Queue Worker
   worker:
@@ -115,7 +115,8 @@ services:
       test: [ "CMD-SHELL", "wget -q --spider http://127.0.0.1/ || exit 1" ]
       interval: 10s
       timeout: 5s
-      retries: 3
+      retries: 6
+      start_period: 40s
 
   # Database (MySQL)
   db:
@@ -160,6 +161,12 @@ services:
       DB_NAME: ${DB_DATABASE:-rbdb}
     networks:
       - rbdb-network
+    healthcheck:
+      test: [ "CMD-SHELL", "ps aux | grep -v grep | grep main || exit 1" ]
+      interval: 10s
+      timeout: 5s
+      retries: 6
+      start_period: 10s
     depends_on:
       web:
         condition: service_healthy
@@ -186,6 +193,12 @@ services:
       - "8088:80"
     networks:
       - rbdb-network
+    healthcheck:
+      test: [ "CMD-SHELL", "wget -q --spider http://127.0.0.1/ || exit 1" ]
+      interval: 10s
+      timeout: 5s
+      retries: 6
+      start_period: 10s
     depends_on:
       web:
         condition: service_healthy

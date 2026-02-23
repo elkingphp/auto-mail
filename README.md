@@ -34,7 +34,14 @@ A comprehensive system for defining, executing, and delivering database reports.
     - Copy `.env.example` to `.env` in `control-plane-laravel/`.
     - Set `DB_PASSWORD` and `APP_KEY` (run `php artisan key:generate` locally or generate one).
 
-3.  **Start Services**
+3.  **Deploy System**
+    ```bash
+    chmod +x deploy.sh
+    ./deploy.sh
+    ```
+    *This script will automatically check prerequisites, build containers, verify health, and run migrations.*
+
+4.  **Start Services (Manual)**
     ```bash
     docker-compose up -d --build
     ```
